@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block title %}Audit Log · NEXORA PH{% endblock %}{% block content %}
+<h1>Audit Log</h1><p class="muted">Recent application actions. This prototype log is useful for testing but is not a tamper-proof official audit system.</p>
+<div class="panel table-wrap"><table><thead><tr><th>Date / Time</th><th>User</th><th>Action</th><th>Entity</th><th>Details</th></tr></thead><tbody>{% for r in rows %}<tr><td>{{ r.created_at }}</td><td>{{ r.username or '—' }}</td><td>{{ r.action }}</td><td>{{ r.entity }} #{{ r.entity_id or '—' }}</td><td>{{ r.detail }}</td></tr>{% else %}<tr><td colspan="5">No activity yet.</td></tr>{% endfor %}</tbody></table></div>{% endblock %}

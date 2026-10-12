@@ -1,0 +1,2 @@
+pr_number,title,end_user,procurement_method,abc,funding_source,ppmp_app_ref,pr_date,target_date,status,assigned_to,po_number,remarks
+SAMPLE-PR-001,Office supplies,Administrative Office,,25000,General Fund,APP-2026-001,2026-10-01,2026-11-15,Received,Procurement Staff,,Sample only - delete before use

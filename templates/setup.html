@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}Initial Setup · NEXORA PH{% endblock %}{% block content %}
+<div class="panel" style="max-width:560px;margin:40px auto"><h1>First-time setup</h1><p class="muted">Create the first administrator account. Use a unique password of at least 12 characters.</p>
+<form method="post">{% if setup_key_required %}<div style="margin:14px 0"><label>Initial setup key</label><input name="setup_key" type="password" required autocomplete="off"></div>{% endif %}<div style="margin:14px 0"><label>Administrator username</label><input name="username" required minlength="3" autocomplete="username"></div>
+<div style="margin:14px 0"><label>Password (minimum 12 characters)</label><input type="password" name="password" required minlength="12" autocomplete="new-password"></div>
+<button type="submit">Create administrator</button></form></div>{% endblock %}

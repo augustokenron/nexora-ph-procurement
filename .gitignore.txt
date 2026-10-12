@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+instance/
+*.sqlite
+*.sqlite3
+*.db
+uploads/
+local_copy/
+*.log
+credentials*.json
+token*.json

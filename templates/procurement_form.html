@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block title %}{{ 'Edit' if row else 'New' }} Procurement · NEXORA PH{% endblock %}{% block content %}
+<h1>{{ 'Edit Procurement Record' if row else 'Register Purchase Request' }}</h1><p class="muted">Required fields are marked with *. Enter information from approved source documents.</p>
+<div class="panel"><form method="post"><div class="fields">
+<div><label>PR Number *</label><input name="pr_number" required value="{{ request.form.get('pr_number', row.pr_number if row else '') }}"></div>
+<div><label>Short description / title *</label><input name="title" required value="{{ request.form.get('title', row.title if row else '') }}"></div>
+<div><label>End-user office</label><input name="end_user" value="{{ request.form.get('end_user', row.end_user if row else '') }}"></div>
+<div><label>ABC (PHP) *</label><input type="number" min="0" step="0.01" name="abc" required value="{{ request.form.get('abc', row.abc if row else '0') }}"></div>
+<div><label>Procurement method</label><select name="procurement_method">{% for m in methods %}<option value="{{ m }}" {% if request.form.get('procurement_method', row.procurement_method if row else '')==m %}selected{% endif %}>{{ m or 'Select / not yet determined' }}</option>{% endfor %}</select></div>
+<div><label>Status</label><select name="status">{% for s in statuses %}<option {% if request.form.get('status', row.status if row else 'Received')==s %}selected{% endif %}>{{ s }}</option>{% endfor %}</select></div>
+<div><label>Funding source</label><input name="funding_source" value="{{ request.form.get('funding_source', row.funding_source if row else '') }}"></div>
+<div><label>PPMP / APP reference</label><input name="ppmp_app_ref" value="{{ request.form.get('ppmp_app_ref', row.ppmp_app_ref if row else '') }}"></div>
+<div><label>PR date</label><input type="date" name="pr_date" value="{{ request.form.get('pr_date', row.pr_date if row else '') }}"></div>
+<div><label>Target date / deadline</label><input type="date" name="target_date" value="{{ request.form.get('target_date', row.target_date if row else '') }}"></div>
+<div><label>Assigned staff</label><input name="assigned_to" value="{{ request.form.get('assigned_to', row.assigned_to if row else '') }}"></div>
+<div><label>Supplier (if known)</label><select name="supplier_id"><option value="">Not yet assigned</option>{% for s in suppliers %}<option value="{{ s.id }}" {% if request.form.get('supplier_id', (row.supplier_id|string) if row and row.supplier_id else '')==(s.id|string) %}selected{% endif %}>{{ s.name }}</option>{% endfor %}</select></div>
+<div><label>PO number</label><input name="po_number" value="{{ request.form.get('po_number', row.po_number if row else '') }}"></div>
+<div style="grid-column:1/-1"><label>Remarks / next action</label><textarea name="remarks">{{ request.form.get('remarks', row.remarks if row else '') }}</textarea></div>
+</div><div class="actions"><button type="submit">Save record</button><a class="btn secondary" href="{{ url_for('procurements') }}">Cancel</a></div></form></div>{% endblock %}

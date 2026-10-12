@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Import CSV · NEXORA PH{% endblock %}{% block content %}
+<h1>Import Existing Records</h1><p class="muted">For migration, prepare a clean CSV file and test with a small sample first. This import adds new records; it does not overwrite existing records or import attached files.</p>
+<div class="panel"><h2>Expected CSV headers</h2><code>pr_number,title,end_user,procurement_method,abc,funding_source,ppmp_app_ref,pr_date,target_date,status,assigned_to,po_number,remarks</code>
+<p class="small muted">Required: <b>pr_number</b> and <b>title</b>. Optional fields may be blank. Use ISO dates YYYY-MM-DD and save as CSV UTF-8. Duplicate PR numbers and invalid rows are skipped.</p>
+<form method="post" enctype="multipart/form-data"><div><label>CSV file</label><input type="file" name="file" accept=".csv" required></div><div class="actions"><button>Import CSV</button><a class="btn secondary" href="{{ url_for('procurements') }}">Cancel</a></div></form></div>
+<div class="panel"><h2>Before importing</h2><ul><li>Keep an untouched copy of the original workbook.</li><li>Normalize PR numbers and date formats.</li><li>Remove merged cells, totals rows, and duplicate records.</li><li>Do not import confidential data until the production security review is complete.</li></ul></div>{% endblock %}
